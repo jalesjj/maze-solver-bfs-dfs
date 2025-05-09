@@ -2,6 +2,12 @@
 
 Aplikasi visualisasi untuk algoritma BFS (Breadth-First Search) dan DFS (Depth-First Search) dalam memecahkan labirin.
 
+
+
+https://github.com/user-attachments/assets/8bda17ba-13e7-449e-9dfb-d2557a021589
+
+
+
 ## Cara Instalasi
 
 ### Prasyarat
