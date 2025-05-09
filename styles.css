@@ -1,0 +1,501 @@
+/* Modern CSS with improved styling */
+:root {
+    --primary-color: #4CAF50;
+    --secondary-color: #2196F3;
+    --dark-bg: #121212;
+    --darker-bg: #0a0a0a;
+    --light-text: #ffffff;
+    --accent-color: #FF5722;
+    --warning-color: #f44336;
+    --dark-panel: #1e1e1e;
+    --border-radius: 8px;
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--dark-bg), var(--darker-bg));
+    color: var(--light-text);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    width: 100%;
+    max-width: 1000px;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: var(--light-text);
+    margin: 15px 0;
+    text-align: center;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+h2 {
+    font-size: 1.8rem;
+    color: var(--light-text);
+    margin: 10px 0;
+    text-align: center;
+}
+
+.main-panel {
+    width: 100%;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.panel {
+    background-color: var(--dark-panel);
+    border-radius: var(--border-radius);
+    padding: 20px;
+    box-shadow: var(--box-shadow);
+    width: 100%;
+    max-width: 800px;
+}
+
+/* Controls & Buttons */
+.controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.controls-container {
+    display: flex;
+    gap: 10px;
+    flex-wrap: nowrap;
+}
+
+.controls select, .controls button {
+    padding: 12px 16px;
+    font-size: 16px;
+    border-radius: var(--border-radius);
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.controls select {
+    background-color: #333;
+    color: var(--light-text);
+    width: 100%;
+    max-width: 250px;
+}
+
+.controls button {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: bold;
+    width: auto;
+    min-width: 140px;
+}
+
+.controls button:hover {
+    background-color: #3d8b3d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.controls button:disabled {
+    background-color: #555;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+/* Canvas Container */
+.canvas-container {
+    border: 2px solid #333;
+    padding: 15px;
+    border-radius: var(--border-radius);
+    background-color: #000;
+    box-shadow: var(--box-shadow);
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    max-width: 100%;
+    overflow: auto;
+}
+
+canvas {
+    display: block;
+}
+
+/* Legend */
+.legend {
+    display: flex;
+    flex-wrap: wrap; /* Allow wrapping by default */
+    justify-content: center;
+    gap: 8px;
+    margin: 15px auto;
+    max-width: 100%;
+}
+
+.legend-item {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 4px 8px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+.legend-color {
+    width: 12px;
+    height: 12px;
+    border-radius: 3px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    flex-shrink: 0;
+}
+
+/* Speed Controls */
+.speed-controls {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin: 10px 0;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+}
+
+.speed-controls label {
+    font-weight: bold;
+}
+
+.speed-controls input[type="range"] {
+    flex: 1;
+    height: 8px;
+    appearance: none;
+    background: #555;
+    border-radius: 4px;
+    outline: none;
+}
+
+.speed-controls input[type="range"]::-webkit-slider-thumb {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: var(--primary-color);
+    cursor: pointer;
+}
+
+.speed-controls span {
+    min-width: 60px;
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Stats */
+.stats {
+    font-size: 16px;
+    margin-top: 10px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: var(--border-radius);
+    text-align: center;
+    font-weight: bold;
+}
+
+/* Instructions */
+.instructions {
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #bbb;
+    background-color: rgba(0, 0, 0, 0.3);
+    padding: 10px;
+    border-radius: var(--border-radius);
+}
+
+/* Custom Maze Styles */
+#customMazeControls {
+    background-color: #333;
+    padding: 20px;
+    border-radius: var(--border-radius);
+    margin-top: 15px;
+    width: 100%;
+}
+
+.custom-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    align-items: center;
+    margin-bottom: 15px;
+}
+
+.custom-controls div {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.custom-controls select {
+    padding: 8px;
+    background-color: #444;
+    color: white;
+    border: none;
+    border-radius: 4px;
+}
+
+.custom-controls button {
+    padding: 8px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: all 0.2s ease;
+}
+
+.custom-controls button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+#createCustomMazeBtn {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+#clearCustomMazeBtn {
+    background-color: var(--warning-color);
+    color: white;
+}
+
+.drawing-tools {
+    margin-bottom: 15px;
+}
+
+.tools-label {
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+.tool-buttons {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.tool-btn {
+    padding: 8px 12px;
+    background-color: #555;
+    color: white;
+    border: 1px solid #888;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.tool-btn:hover {
+    background-color: #666;
+}
+
+.tool-btn.active {
+    background-color: var(--primary-color) !important;
+    border-color: white !important;
+}
+
+/* Dropdown Algorithm Info Sections */
+.algorithm-info {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.algorithm-dropdown {
+    background-color: var(--dark-panel);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    margin-bottom: 10px;
+    overflow: hidden;
+}
+
+.dropdown-header {
+    padding: 15px 20px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-left: 5px solid var(--primary-color);
+}
+
+.dropdown-header h3 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+.dropdown-header i {
+    transition: transform 0.3s ease;
+}
+
+.dropdown-header.active {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.dropdown-header.bfs {
+    border-color: var(--secondary-color);
+}
+
+.dropdown-header.dfs {
+    border-color: var(--accent-color);
+}
+
+.dropdown-header.visual {
+    border-color: #9C27B0; /* Purple for visual comparison */
+}
+
+.dropdown-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.3s ease;
+    background-color: rgba(0, 0, 0, 0.2);
+    padding: 0 20px;
+}
+
+.dropdown-content.active {
+    padding: 20px;
+}
+
+.dropdown-content p {
+    margin-bottom: 15px;
+    line-height: 1.6;
+}
+
+.dropdown-content ul {
+    margin-left: 20px;
+    margin-bottom: 15px;
+}
+
+.dropdown-content li {
+    margin-bottom: 8px;
+    line-height: 1.5;
+}
+
+.characteristics {
+    padding: 15px 0;
+}
+
+.characteristics h4 {
+    margin-bottom: 10px;
+    color: #ddd;
+}
+
+footer {
+    margin-top: 40px;
+    text-align: center;
+    padding: 20px;
+    color: #888;
+    font-size: 0.9rem;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 768px) {
+    .controls {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .controls select, .controls button {
+        width: 100%;
+    }
+    
+    .controls-container {
+        width: 100%;
+        justify-content: space-between;
+    }
+    
+    .legend {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .speed-controls {
+        flex-direction: column;
+        align-items: stretch;
+    }
+}
+
+/* Mobile layout - Legend as scrollable row */
+@media (max-width: 768px) {
+    .legend-container {
+        width: 100%;
+        position: relative;
+        margin: 15px 0;
+    }
+    
+    /* Show scroll indicators */
+    .legend-container::before,
+    .legend-container::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        width: 20px;
+        pointer-events: none;
+        z-index: 1;
+    }
+    
+    .legend-container::before {
+        left: 0;
+        background: linear-gradient(to right, rgba(30, 30, 30, 0.8), transparent);
+    }
+    
+    .legend-container::after {
+        right: 0;
+        background: linear-gradient(to left, rgba(30, 30, 30, 0.8), transparent);
+    }
+    
+    .legend {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        scrollbar-width: none; /* Hide scrollbar for Firefox */
+        -ms-overflow-style: none; /* Hide scrollbar for IE/Edge */
+        padding: 5px 10px;
+        justify-content: flex-start;
+        gap: 10px;
+        margin: 0;
+    }
+    
+    /* Hide scrollbar for Chrome/Safari */
+    .legend::-webkit-scrollbar {
+        display: none;
+    }
+    
+    .legend-item {
+        flex-shrink: 0;
+        font-size: 0.85rem;
+        white-space: nowrap;
+    }
+}

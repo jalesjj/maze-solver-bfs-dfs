@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Maze Solver - BFS & DFS Visualization</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Advanced Maze Solver</h1>
+        <h2>Visual Comparison of BFS & DFS Algorithms</h2>
+        
+        <div class="main-panel">
+            <div class="panel">
+                <div class="controls">
+                    <select id="mazeSelect">
+                        <option value="1">Small Maze (5x5)</option>
+                        <option value="2">Medium Maze (15x15)</option>
+                        <option value="3">Large Maze (20x20)</option>
+                        <option value="4">Complex Maze (30x30)</option>
+                        <option value="custom">Custom Maze</option>
+                    </select>
+                    
+                    <select id="algorithmSelect">
+                        <option value="bfs">BFS (Breadth-First Search)</option>
+                        <option value="dfs">DFS (Depth-First Search)</option>
+                    </select>
+                    
+                    <div class="controls-container">
+                        <button id="startButton"><i class="fas fa-play"></i> Start</button>
+                        <button id="resetButton"><i class="fas fa-redo"></i> Reset</button>
+                    </div>
+                </div>
+
+                <div class="speed-controls">
+                    <label><i class="fas fa-tachometer-alt"></i> Speed:</label>
+                    <input type="range" id="speedSlider" min="1" max="200" value="100">
+                    <span id="speedValue">100ms</span>
+                </div>  
+                
+                <!-- Custom Maze Controls -->
+                <div id="customMazeControls" style="display: none;">
+                    <div class="custom-controls">
+                        <div>
+                            <label>Size:</label>
+                            <select id="customSizeSelect">
+                                <option value="5">5x5</option>
+                                <option value="10">10x10</option>
+                                <option value="15">15x15</option>
+                                <option value="20">20x20</option>
+                            </select>
+                        </div>
+                        <button id="createCustomMazeBtn"><i class="fas fa-plus-circle"></i> Create Maze</button>
+                        <button id="clearCustomMazeBtn"><i class="fas fa-trash"></i> Clear All</button>
+                    </div>
+                    
+                    <div class="drawing-tools">
+                        <div class="tools-label">Drawing mode:</div>
+                        <div class="tool-buttons">
+                            <button id="wallToolBtn" class="tool-btn active"><i class="fas fa-stop"></i> Wall</button>
+                            <button id="pathToolBtn" class="tool-btn"><i class="fas fa-road"></i> Path</button>
+                            <button id="startToolBtn" class="tool-btn"><i class="fas fa-play-circle"></i> Start</button>
+                            <button id="endToolBtn" class="tool-btn"><i class="fas fa-flag-checkered"></i> End</button>
+                        </div>
+                    </div>
+                    
+                    <div class="instructions">
+                        Click on cells to draw the maze. Use the buttons above to choose drawing tools.
+                    </div>
+                </div>
+                
+                <div class="canvas-container">
+                    <canvas id="mazeCanvas"></canvas>
+                </div>
+                
+                <!-- Updated legend section with container -->
+                <div class="legend-container">
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: green;"></div>
+                            <span>Start</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: red;"></div>
+                            <span>End</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: yellow;"></div>
+                            <span>Path</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: cyan;"></div>
+                            <span>Exploring</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: blue;"></div>
+                            <span>Visited</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: black;"></div>
+                            <span>Wall</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-color" style="background-color: white;"></div>
+                            <span>Empty</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="stats" id="stats"></div>
+                
+                <div class="instructions">
+                    Press the "Start Solving" button to begin the maze solving animation.<br>
+                    For custom maze, click on cells to draw walls, paths, start, and end points.
+                </div>
+            </div>
+        </div>
+        
+        <!-- Algorithm Info Section with Dropdowns -->
+        <div class="algorithm-info">
+            <div class="algorithm-dropdown">
+                <div class="dropdown-header bfs">
+                    <h3>Breadth-First Search (BFS) <i class="fas fa-chevron-down"></i></h3>
+                </div>
+                <div class="dropdown-content">
+                    <div class="characteristics">
+                        <ul>
+                            <li>Menggunakan struktur data Queue (antrian)</li>
+                            <li>Mengambil elemen dari awal antrian dengan queue.shift()</li>
+                            <li>Menjelajahi node tetangga sebelum menjelajahi node yang lebih dalam</li>
+                            <li>Menjelajahi semua node pada kedalaman yang sama sebelum pindah ke level berikutnya</li>
+                            <li>Cocok untuk menemukan jalur terpendek karena menjelajahi node berdasarkan "jarak" dari titik awal</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="algorithm-dropdown">
+                <div class="dropdown-header dfs">
+                    <h3>Depth-First Search (DFS) <i class="fas fa-chevron-down"></i></h3>
+                </div>
+                <div class="dropdown-content">
+                    <div class="characteristics">
+                        <ul>
+                            <li>Menggunakan struktur data Stack (tumpukan)</li>
+                            <li>Mengambil elemen dari akhir tumpukan dengan stack.pop()</li>
+                            <li>Menambahkan elemen baru ke akhir tumpukan dengan stack.push()</li>
+                            <li>Menjelajahi satu jalur sampai tidak bisa lagi sebelum kembali dan mencoba jalur alternatif</li>
+                            <li>Lebih cepat dalam menemukan solusi di beberapa kasus, tetapi tidak menjamin jalur terpendek</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="algorithm-dropdown">
+                <div class="dropdown-header visual">
+                    <h3>Perbedaan Visual <i class="fas fa-chevron-down"></i></h3>
+                </div>
+                <div class="dropdown-content">
+                    <p>
+                        Ketika Anda menjalankan aplikasi dan memilih algoritma yang berbeda, Anda akan melihat perbedaan visual yang jelas:
+                    </p>
+                    <ul>
+                        <li><strong>BFS:</strong> <br>- Eksplorasi menyebar keluar dari titik awal seperti gelombang/riak air. <br>- Menjelajahi semua arah secara bersamaan. <br>- Biasanya menemukan jalur terpendek ke tujuan</li>
+                        <li><strong>DFS:</strong> <br>- Eksplorasi bergerak jauh ke satu arah sebelum mencoba arah lain. <br>- Terlihat seperti "menyusuri" jalur tunggal yang panjang. <br>- Bisa menemukan solusi cepat jika beruntung, tapi tidak menjamin jalur terpendek</li>
+                    </ul>
+                    <p>
+                        Statistik di bagian bawah menunjukkan jumlah langkah di jalur akhir dan jumlah total sel yang dikunjungi, yang membantu membandingkan efisiensi setiap algoritma pada struktur labirin yang berbeda.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/constants.js"></script>
+    <script src="js/maze-solver.js"></script>
+    <script src="js/custom-maze.js"></script>
+    <script src="js/maze-data.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/dropdown.js"></script>
+</body>
+</html>
