@@ -8,8 +8,7 @@
 Aplikasi visualisasi untuk algoritma BFS (Breadth-First Search) dan DFS (Depth-First Search) dalam memecahkan labirin.
 
 ## Demo
-[Klik untuk melihat demo](https://username.github.io/maze-solver](https://jalesjj.github.io/maze-solver-bfs-dfs/
-)
+[Klik untuk melihat demo](https://jalesjj.github.io/maze-solver-bfs-dfs/)
 
 ## Cara Instalasi
 
