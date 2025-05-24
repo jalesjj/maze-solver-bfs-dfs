@@ -168,6 +168,31 @@ canvas {
     flex-shrink: 0;
 }
 
+/* Navigation Links - Moved outside media query to apply to all screen sizes */
+.nav-links {
+    margin: 15px auto;
+    text-align: center;
+}
+
+.feature-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background-color: #333;
+    color: white;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: var(--border-radius);
+    transition: all 0.2s ease;
+    font-weight: bold;
+}
+
+.feature-link:hover {
+    background-color: var(--primary-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
 /* Speed Controls */
 .speed-controls {
     display: flex;

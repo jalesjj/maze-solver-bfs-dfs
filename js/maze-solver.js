@@ -1,3 +1,4 @@
+// maze-solver.js (Perbaikan untuk stats di compare.html)
 /**
  * MazeSolver class - handles the maze solving algorithms and visualization
  */
@@ -112,8 +113,16 @@ class MazeSolver {
             this.solving = false;
             this.steps = path.length - 1;
             this.cellsVisited = this.visited.size;
-            document.getElementById('stats').textContent = 
-                `Steps: ${this.steps} | Cells visited: ${this.cellsVisited}`;
+            
+            // Cek apakah kita berada di halaman index atau compare
+            const statsEl = document.getElementById('stats');
+            if (statsEl) {
+                statsEl.textContent = `Steps: ${this.steps} | Cells visited: ${this.cellsVisited}`;
+            }
+            
+            // Memaksa render jalur kuning setelah menemukan solusi
+            this.draw();
+            
             return;
         }
         
@@ -193,3 +202,22 @@ class MazeSolver {
         }
     }
 }
+
+/**
+ * Add callback functionality to MazeSolver class
+ */
+
+// Add onSolveComplete callback to report when solving is done
+MazeSolver.prototype.onSolveComplete = null;
+
+// Override the original solveStep method to check for completion
+const originalSolveStep = MazeSolver.prototype.solveStep;
+MazeSolver.prototype.solveStep = function() {
+    // Call the original method
+    originalSolveStep.call(this);
+    
+    // If solving is complete and we have a callback, call it
+    if (this.solved && !this.solving && typeof this.onSolveComplete === 'function') {
+        this.onSolveComplete();
+    }
+};

@@ -1,8 +1,9 @@
-/**
- * Main application script - initializes and manages the application
- */
+// Modifikasi app.js untuk mendukung algoritma Dijkstra
 document.addEventListener('DOMContentLoaded', () => {
-    const canvas = document.getElementById('mazeCanvas');
+    console.log('App initialized');
+    
+    // DOM Elements
+    const mazeCanvas = document.getElementById('mazeCanvas');
     const mazeSelect = document.getElementById('mazeSelect');
     const algorithmSelect = document.getElementById('algorithmSelect');
     const startButton = document.getElementById('startButton');
@@ -12,14 +13,18 @@ document.addEventListener('DOMContentLoaded', () => {
     const createCustomMazeBtn = document.getElementById('createCustomMazeBtn');
     const speedSlider = document.getElementById('speedSlider');
     const speedValue = document.getElementById('speedValue');
-    const stats = document.getElementById('stats');
+    const statsElement = document.getElementById('stats');
     
-    let solver = null;
+    // Global objects
+    let mazeSolver = null;
     let customMaze = null;
     
-    // Initialize the solver based on the selected maze
+    /**
+     * Initialize the solver with the selected maze
+     */
     function initializeSolver() {
         const choice = mazeSelect.value;
+        const algorithm = algorithmSelect.value;
         
         if (choice === 'custom') {
             customMazeControls.style.display = 'block';
@@ -27,78 +32,101 @@ document.addEventListener('DOMContentLoaded', () => {
             if (!customMaze) {
                 const size = parseInt(customSizeSelect.value);
                 customMaze = new CustomMaze(size);
+                customMaze.setupEvents();
+                customMaze.draw();
             }
             
-            // Disable solving until custom maze is created
             startButton.disabled = true;
         } else {
             customMazeControls.style.display = 'none';
             
             const mazeData = createMaze(parseInt(choice));
-            solver = new MazeSolver(canvas, mazeData.maze, mazeData.start, mazeData.end);
-            solver.setAlgorithm(algorithmSelect.value);
-            solver.draw();
+            
+            // Buat solver berdasarkan algoritma yang dipilih
+            if (algorithm === 'dijkstra') {
+                mazeSolver = new DijkstraSolver(mazeCanvas, mazeData.maze, mazeData.start, mazeData.end);
+            } else {
+                mazeSolver = new MazeSolver(mazeCanvas, mazeData.maze, mazeData.start, mazeData.end);
+                mazeSolver.setAlgorithm(algorithm);
+            }
+            
+            mazeSolver.draw();
             startButton.disabled = false;
         }
         
-        stats.textContent = '';
+        // Reset stats
+        statsElement.textContent = '';
     }
     
-    // Handle custom maze size change
+    /**
+     * Start solving the maze
+     */
+    function startSolving() {
+        if (mazeSelect.value === 'custom' && customMaze) {
+            const mazeData = customMaze.getData();
+            
+            // Buat solver berdasarkan algoritma yang dipilih
+            const algorithm = algorithmSelect.value;
+            if (algorithm === 'dijkstra') {
+                mazeSolver = new DijkstraSolver(mazeCanvas, mazeData.maze, mazeData.start, mazeData.end);
+            } else {
+                mazeSolver = new MazeSolver(mazeCanvas, mazeData.maze, mazeData.start, mazeData.end);
+                mazeSolver.setAlgorithm(algorithm);
+            }
+        }
+        
+        if (!mazeSolver) {
+            console.error('Maze solver not initialized');
+            return;
+        }
+        
+        // Set speed
+        const speed = parseInt(speedSlider.value);
+        mazeSolver.setDelay(speed);
+        
+        // Enable/disable buttons
+        startButton.disabled = true;
+        resetButton.disabled = false;
+        
+        // Start solving
+        mazeSolver.startSolving();
+    }
+    
+    /**
+     * Reset the maze solver
+     */
+    function resetSolver() {
+        if (mazeSolver) {
+            mazeSolver.reset();
+            startButton.disabled = false;
+            statsElement.textContent = '';
+        }
+    }
+    
+    // Event Listeners
+    mazeSelect.addEventListener('change', initializeSolver);
+    algorithmSelect.addEventListener('change', initializeSolver);
+    
+    startButton.addEventListener('click', startSolving);
+    resetButton.addEventListener('click', resetSolver);
+    
     createCustomMazeBtn.addEventListener('click', () => {
         const size = parseInt(customSizeSelect.value);
         customMaze = new CustomMaze(size);
-        
-        // Enable solving for the custom maze
+        customMaze.setupEvents();
+        customMaze.draw();
         startButton.disabled = false;
     });
     
-    // Handle speed slider change
     speedSlider.addEventListener('input', () => {
         const value = speedSlider.value;
         speedValue.textContent = `${value}ms`;
         
-        if (solver) {
-            solver.setDelay(value);
+        if (mazeSolver) {
+            mazeSolver.setDelay(value);
         }
     });
     
-    // Event Listeners
-    mazeSelect.addEventListener('change', initializeSolver);
-    algorithmSelect.addEventListener('change', () => {
-        if (solver) {
-            solver.setAlgorithm(algorithmSelect.value);
-        }
-    });
-    
-    startButton.addEventListener('click', () => {
-        if (mazeSelect.value === 'custom' && customMaze) {
-            // Create solver from custom maze
-            const mazeData = customMaze.getData();
-            solver = new MazeSolver(canvas, mazeData.maze, mazeData.start, mazeData.end);
-            solver.setAlgorithm(algorithmSelect.value);
-            solver.setDelay(parseInt(speedSlider.value));
-            solver.startSolving();
-            startButton.disabled = true;
-        } else if (solver && !solver.solving && !solver.solved) {
-            solver.startSolving();
-            startButton.disabled = true;
-        }
-    });
-    
-    resetButton.addEventListener('click', () => {
-        if (mazeSelect.value === 'custom' && customMaze) {
-            // Just redraw the custom maze without solving
-            customMaze.draw();
-            startButton.disabled = false;
-        } else if (solver) {
-            solver.reset();
-            startButton.disabled = false;
-        }
-        
-        stats.textContent = '';
-    });
-    
-    // Initialize first maze
+    // Initialize on page load
     initializeSolver();
 });

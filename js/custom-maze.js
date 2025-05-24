@@ -1,3 +1,4 @@
+// custom-maze.js (Perbaikan)
 /**
  * CustomMaze class - handles the creation of custom mazes
  */
@@ -9,6 +10,10 @@ class CustomMaze {
         this.end = [size-1, size-1];
         this.drawingMode = 'wall'; // 'wall', 'path', 'start', or 'end'
         this.canvas = document.getElementById('mazeCanvas');
+        if (!this.canvas) {
+            // Jika mazeCanvas tidak ditemukan, coba gunakan bfsCanvas (untuk halaman perbandingan)
+            this.canvas = document.getElementById('bfsCanvas');
+        }
         this.ctx = this.canvas.getContext('2d');
         
         // Set canvas dimensions
@@ -20,10 +25,6 @@ class CustomMaze {
         // Drawing state
         this.isDrawing = false;
         this.lastCell = null;
-
-        // Setup event listeners
-        this.setupEvents();
-        this.draw();
     }
     
     setupEvents() {

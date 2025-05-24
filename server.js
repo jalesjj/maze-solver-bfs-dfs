@@ -65,6 +65,8 @@ const server = http.createServer((req, res) => {
 
 // Start server
 server.listen(PORT, () => {
+  console.log(``);
   console.log(`Server running at http://localhost:${PORT}/`);
   console.log(`Press Ctrl+C to stop the server`);
+  console.log(``);
 });

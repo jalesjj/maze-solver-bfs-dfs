@@ -1,3 +1,4 @@
+// maze-data.js
 /**
  * Contains predefined maze data
  */

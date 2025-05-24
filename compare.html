@@ -1,0 +1,145 @@
+<!-- compare.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithm Comparison - Maze Solver</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="compare-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Algorithm Comparison</h1>
+        <h2>BFS vs DFS Visualization</h2>
+        
+        <div class="comparison-nav">
+            <a href="index.html" class="nav-link"><i class="fas fa-home"></i> Back to Main</a>
+            <button id="resetButton" class="nav-button"><i class="fas fa-redo"></i> Reset Both</button>
+            <button id="startButton" class="nav-button primary"><i class="fas fa-play"></i> Start Comparison</button>
+        </div>
+        
+        <div class="maze-selection">
+            <select id="mazeSelect">
+                <option value="1">Small Maze (5x5)</option>
+                <option value="2" selected>Medium Maze (15x15)</option>
+                <option value="3">Large Maze (20x20)</option>
+                <option value="4">Complex Maze (30x30)</option>
+                <option value="custom">Custom Maze</option>
+            </select>
+            
+            <div class="speed-controls">
+                <label><i class="fas fa-tachometer-alt"></i> Speed:</label>
+                <input type="range" id="speedSlider" min="1" max="200" value="100">
+                <span id="speedValue">100ms</span>
+            </div>
+        </div>
+        
+        <!-- Custom Maze Controls -->
+        <div id="customMazeControls" class="custom-maze-panel" style="display: none;">
+            <div class="custom-controls">
+                <div>
+                    <label>Size:</label>
+                    <select id="customSizeSelect">
+                        <option value="5">5x5</option>
+                        <option value="10">10x10</option>
+                        <option value="15">15x15</option>
+                        <option value="20">20x20</option>
+                    </select>
+                </div>
+                <button id="createCustomMazeBtn"><i class="fas fa-plus-circle"></i> Create Maze</button>
+                <button id="clearCustomMazeBtn"><i class="fas fa-trash"></i> Clear All</button>
+            </div>
+            
+            <div class="drawing-tools">
+                <div class="tools-label">Drawing mode:</div>
+                <div class="tool-buttons">
+                    <button id="wallToolBtn" class="tool-btn active"><i class="fas fa-stop"></i> Wall</button>
+                    <button id="pathToolBtn" class="tool-btn"><i class="fas fa-road"></i> Path</button>
+                    <button id="startToolBtn" class="tool-btn"><i class="fas fa-play-circle"></i> Start</button>
+                    <button id="endToolBtn" class="tool-btn"><i class="fas fa-flag-checkered"></i> End</button>
+                </div>
+            </div>
+            
+            <div class="instructions">
+                Click on cells to draw the maze. Use the buttons above to choose drawing tools.
+            </div>
+        </div>
+        
+        <div class="comparison-container">
+            <div class="algorithm-panel">
+                <h3>Breadth-First Search (BFS)</h3>
+                <div class="canvas-container">
+                    <canvas id="bfsCanvas"></canvas>
+                </div>
+                <div class="stats" id="bfsStats">BFS: Waiting to start...</div>
+            </div>
+            
+            <div class="algorithm-panel">
+                <h3>Depth-First Search (DFS)</h3>
+                <div class="canvas-container">
+                    <canvas id="dfsCanvas"></canvas>
+                </div>
+                <div class="stats" id="dfsStats">DFS: Waiting to start...</div>
+            </div>
+        </div>
+        
+        <div class="comparison-results" id="comparisonResults">
+            <h3>Comparison Results</h3>
+            <div class="results-content">
+                <p>Click "Start Comparison" to see which algorithm performs better for this maze!</p>
+            </div>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: green;"></div>
+                <span>Start</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: red;"></div>
+                <span>End</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: yellow;"></div>
+                <span>Path</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: cyan;"></div>
+                <span>Exploring</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: blue;"></div>
+                <span>Visited</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: black;"></div>
+                <span>Wall</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color" style="background-color: white;"></div>
+                <span>Empty</span>
+            </div>
+        </div>
+        
+        <!-- Footer -->
+        <footer class="footer">
+            <p>&copy; 2023 <span class="author-name">Your Name</span>. All Rights Reserved.</p>
+            <p>
+                <a href="https://github.com/yourusername/maze-solver" target="_blank" class="footer-link">
+                    <i class="fab fa-github"></i> GitHub
+                </a>
+                <span class="divider">|</span>
+                <a href="index.html" class="footer-link">Main App</a>
+            </p>
+        </footer>
+    </div>
+
+    <script src="js/constants.js"></script>
+    <script src="js/maze-solver.js"></script>
+    <script src="js/custom-maze.js"></script>
+    <script src="js/maze-data.js"></script>
+    <script src="js/compare.js"></script>
+</body>
+</html>

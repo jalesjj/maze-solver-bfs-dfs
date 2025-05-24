@@ -3,14 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Advanced Maze Solver - BFS & DFS Visualization</title>
+    <title>Advanced Maze Solver - BFS, DFS & Dijkstra Visualization</title>
     <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="chatbot.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* Tambahan style untuk visualisasi Dijkstra */
+        .algorithm-dropdown.dijkstra .dropdown-header {
+            background-color: #7b68ee;
+        }
+        
+        .legend-item .legend-color.gradient {
+            background: linear-gradient(to right, #00FF00, #FFFF00, #FFA500, #FF0000);
+        }
+    </style>
 </head>
 <body>
     <div class="container">
         <h1>Advanced Maze Solver</h1>
-        <h2>Visual Comparison of BFS & DFS Algorithms</h2>
+        <h2>Visual Comparison of BFS, DFS & Dijkstra Algorithms</h2>
         
         <div class="main-panel">
             <div class="panel">
@@ -26,6 +37,7 @@
                     <select id="algorithmSelect">
                         <option value="bfs">BFS (Breadth-First Search)</option>
                         <option value="dfs">DFS (Depth-First Search)</option>
+                        <option value="dijkstra">Dijkstra's Algorithm</option>
                     </select>
                     
                     <div class="controls-container">
@@ -75,7 +87,7 @@
                     <canvas id="mazeCanvas"></canvas>
                 </div>
                 
-                <!-- Updated legend section with container -->
+                <!-- Updated legend section with Dijkstra gradient -->
                 <div class="legend-container">
                     <div class="legend">
                         <div class="legend-item">
@@ -99,6 +111,10 @@
                             <span>Visited</span>
                         </div>
                         <div class="legend-item">
+                            <div class="legend-color gradient"></div>
+                            <span>Distance (Dijkstra)</span>
+                        </div>
+                        <div class="legend-item">
                             <div class="legend-color" style="background-color: black;"></div>
                             <span>Wall</span>
                         </div>
@@ -110,6 +126,12 @@
                 </div>
                 
                 <div class="stats" id="stats"></div>
+
+                <div class="nav-links">
+                    <a href="compare.html" class="feature-link">
+                        <i class="fas fa-chart-bar"></i> Compare Algorithms
+                    </a>
+                </div>
                 
                 <div class="instructions">
                     Press the "Start Solving" button to begin the maze solving animation.<br>
@@ -117,6 +139,7 @@
                 </div>
             </div>
         </div>
+
         
         <!-- Algorithm Info Section with Dropdowns -->
         <div class="algorithm-info">
@@ -154,6 +177,25 @@
                 </div>
             </div>
             
+            <!-- Tambahkan bagian Dijkstra -->
+            <div class="algorithm-dropdown">
+                <div class="dropdown-header dijkstra">
+                    <h3>Dijkstra's Algorithm <i class="fas fa-chevron-down"></i></h3>
+                </div>
+                <div class="dropdown-content">
+                    <div class="characteristics">
+                        <ul>
+                            <li>Menggunakan priority queue (antrian prioritas) untuk memilih simpul berikutnya</li>
+                            <li>Selalu memilih simpul dengan jarak terpendek dari simpul awal</li>
+                            <li>Menghitung jarak terpendek ke SEMUA simpul dalam graf</li>
+                            <li>Menjamin jalur terpendek jika semua bobot positif</li>
+                            <li>Menampilkan jarak setiap sel dari titik awal dengan gradasi warna dan angka</li>
+                            <li>Berbeda dengan BFS karena dapat menangani graf berbobot</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
             <div class="algorithm-dropdown">
                 <div class="dropdown-header visual">
                     <h3>Perbedaan Visual <i class="fas fa-chevron-down"></i></h3>
@@ -165,6 +207,7 @@
                     <ul>
                         <li><strong>BFS:</strong> <br>- Eksplorasi menyebar keluar dari titik awal seperti gelombang/riak air. <br>- Menjelajahi semua arah secara bersamaan. <br>- Biasanya menemukan jalur terpendek ke tujuan</li>
                         <li><strong>DFS:</strong> <br>- Eksplorasi bergerak jauh ke satu arah sebelum mencoba arah lain. <br>- Terlihat seperti "menyusuri" jalur tunggal yang panjang. <br>- Bisa menemukan solusi cepat jika beruntung, tapi tidak menjamin jalur terpendek</li>
+                        <li><strong>Dijkstra:</strong> <br>- Mirip dengan BFS, tetapi lebih efisien dalam menemukan jalur terpendek. <br>- Menampilkan jarak dari titik awal ke semua titik lain dengan gradasi warna dan angka. <br>- Sel yang lebih dekat ke titik awal berwarna lebih hijau, sel yang lebih jauh berwarna lebih merah.</li>
                     </ul>
                     <p>
                         Statistik di bagian bawah menunjukkan jumlah langkah di jalur akhir dan jumlah total sel yang dikunjungi, yang membantu membandingkan efisiensi setiap algoritma pada struktur labirin yang berbeda.
@@ -172,13 +215,62 @@
                 </div>
             </div>
         </div>
+
+
     </div>
+<div id="chatbotToggle" class="chatbot-toggle">
+    <i class="fas fa-robot"></i>
+</div>
+
+<!-- Chatbot Container -->
+<div id="chatbotContainer" class="chatbot-container">
+    <div class="chatbot-header">
+        <div class="chatbot-avatar">
+            <i class="fas fa-robot"></i>
+        </div>
+        <div class="chatbot-title">
+            <h4>Algorithm Assistant</h4>
+            <span class="status-online">Online</span>
+        </div>
+        <button id="closeChatbot" class="close-btn">
+            <i class="fas fa-times"></i>
+        </button>
+    </div>
+    
+    <div class="chatbot-messages" id="chatbotMessages">
+        <div class="message bot-message">
+            <div class="message-avatar">
+                <i class="fas fa-robot"></i>
+            </div>
+            <div class="message-content">
+                <p>Hello! I'm your Algorithm Assistant. I can help you understand BFS, DFS, and Dijkstra algorithms. Try asking me something like:</p>
+                <div class="quick-suggestions">
+                    <button class="suggestion-btn" data-question="Halo">Halo</button>
+        <button class="suggestion-btn" data-question="Bisa apa?">Bisa apa?</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="chatbot-input">
+        <input type="text" id="chatbotInput" placeholder="Ask about BFS, DFS, or Dijkstra..." maxlength="200">
+        <button id="sendMessage" class="send-btn">
+            <i class="fas fa-paper-plane"></i>
+        </button>
+    </div>
+</div>
 
     <script src="js/constants.js"></script>
     <script src="js/maze-solver.js"></script>
     <script src="js/custom-maze.js"></script>
     <script src="js/maze-data.js"></script>
+    <script src="js/dijkstra.js"></script>
     <script src="js/app.js"></script>
     <script src="js/dropdown.js"></script>
+    <!-- <script src="js/chatboten.js"></script> -->
+    <script src="js/chatbotid.js"></script>
+
+
+    
 </body>
 </html>
