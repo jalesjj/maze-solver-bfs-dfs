@@ -44,19 +44,28 @@ Aplikasi visualisasi untuk algoritma BFS (Breadth-First Search) dan DFS (Depth-F
 - Pembuatan labirin kustom
 - Pengaturan kecepatan animasi
 - Statistik penyelesaian (jumlah langkah dan sel yang dikunjungi)
+- perbandingan BFS dan DFS
+- ada chatbot penjelasan mengenai BFS dan DFS
 
 ## Struktur Folder
 
 ```
 maze-solver/
 ├── index.html          # File HTML utama
+├── compare.html        # Perbandingan
 ├── styles.css          # File CSS untuk styling
+├── compare-styles.css  # file CSS untuk perbandingan BFS dan DFS
+├── chatbot.css         # file CSS untuk Chatbot
 ├── js/                 # Direktori untuk file JavaScript
 │   ├── constants.js    # Konstanta yang digunakan di seluruh aplikasi
 │   ├── maze-solver.js  # Algoritma BFS dan DFS
 │   ├── custom-maze.js  # Fungsi untuk membuat labirin kustom
 │   ├── maze-data.js    # Data labirin yang telah didefinisikan
 │   ├── app.js          # Script utama aplikasi
+│   ├── chatbotid.js    # untuk chatbot bahasa indonesia
+│   ├── chatbotid.js    # untuk chatbot bahasa ingris
+│   ├── djiksa.js       # fungsi algoritma Djiksa
+│   ├── compare.js      # fungsi untuk perbandingan BFS dan DFS
 │   └── dropdown.js     # Fungsi untuk menangani dropdown
 ├── server.js           # Server Node.js sederhana
 ├── 404.html            # Halaman error 404
