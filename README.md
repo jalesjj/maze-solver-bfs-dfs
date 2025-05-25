@@ -131,24 +131,6 @@ this.apiKey = 'YOUR_API';
 | **DFS** | O(V + E) | O(h) | ❌ Tidak | Eksplorasi mendalam |
 | **Dijkstra** | O(V²) | O(V) | ✅ Ya | Graf berbobot |
 
-## 🤝 Contributing
-
-Kontribusi selalu welcome! Berikut cara berkontribusi:
-
-1. **Fork** repository ini
-2. **Create branch** untuk feature baru (`git checkout -b feature/AmazingFeature`)
-3. **Commit** perubahan (`git commit -m 'Add some AmazingFeature'`)
-4. **Push** ke branch (`git push origin feature/AmazingFeature`)
-5. **Open Pull Request**
-
-### Ideas untuk Kontribusi
-- Tambah algoritma lain (A*, Greedy Best-First)
-- Improve UI/UX design
-- Tambah maze patterns yang lebih kompleks
-- Optimasi performance untuk maze besar
-- Tambah unit tests
-- Improve AI chatbot responses
-
 ## 👤 Author
 
 **Jales JND**
@@ -160,34 +142,6 @@ Kontribusi selalu welcome! Berikut cara berkontribusi:
 - **Font Awesome** - Untuk icons yang digunakan
 - **GitHub Pages** - Untuk hosting gratis
 - **Komunitas Open Source** - Untuk inspirasi dan pembelajaran
-
-## 🔄 Changelog
-
-### v2.0.0 (Latest)
-- ✨ Tambah AI Chatbot dengan Google Gemini
-- ✨ Tambah Dijkstra Algorithm visualization
-- ✨ Improve UI dengan stop button untuk AI
-- 🐛 Fix responsive design untuk mobile
-- 🐛 Fix button layout issues
-
-### v1.0.0
-- 🎉 Initial release
-- ✨ BFS & DFS visualization
-- ✨ Custom maze builder
-- ✨ Speed control dan statistics
-
----
-
-## 📞 Support
-
-Jika ada pertanyaan atau issue, silakan:
-1. **Buka GitHub Issues** untuk bug reports
-2. **Contact email** untuk pertanyaan umum
-3. **Star repository** jika project ini bermanfaat! ⭐
-
----
-
-<div align="center">
 
 **⭐ Jika project ini membantu, jangan lupa kasih star! ⭐**
 
