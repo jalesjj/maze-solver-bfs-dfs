@@ -1,95 +1,196 @@
-# Maze Solver Visualization
+# 🧩 Advanced Maze Solver - BFS, DFS & Dijkstra Visualization
 
-![HTML5](https://img.shields.io/badge/HTML5-E34F26?style=for-the-badge&logo=html5&logoColor=white)
-![CSS3](https://img.shields.io/badge/CSS3-1572B6?style=for-the-badge&logo=css3&logoColor=white)
-![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
-![Node.js](https://img.shields.io/badge/Node.js-339933?style=for-the-badge&logo=nodedotjs&logoColor=white)
+Aplikasi web interaktif untuk memvisualisasikan dan membandingkan algoritma pencarian graf: **Breadth-First Search (BFS)**, **Depth-First Search (DFS)**, dan **Dijkstra's Algorithm** dalam memecahkan labirin.
 
-Aplikasi visualisasi untuk algoritma BFS (Breadth-First Search) dan DFS (Depth-First Search) dalam memecahkan labirin.
+## 🌟 Fitur Utama
 
-## Demo
-[Klik untuk melihat demo](https://jalesjj.github.io/maze-solver-bfs-dfs/)
+### 🎮 Visualisasi Algoritma
+- **BFS (Breadth-First Search)** - Pencarian melebar level demi level
+- **DFS (Depth-First Search)** - Pencarian mendalam hingga ujung
+- **Dijkstra's Algorithm** - Pencarian jalur terpendek dengan bobot
 
-## Cara Instalasi
+### 🎨 Maze Options
+- **Pre-built Mazes** - 5x5, 15x15, 20x20, 30x30
+- **Custom Maze Builder** - Buat labirin sendiri dengan drag & drop
+- **Drawing Tools** - Wall, Path, Start Point, End Point
 
-### Prasyarat
+### 🤖 AI Chatbot Assistant
+- **Powered by Google Gemini AI** - Chatbot cerdas berbahasa Indonesia
+- **Algorithm Expert** - Menjawab pertanyaan tentang BFS, DFS, Dijkstra
+- **Interactive Q&A** - Penjelasan detail dengan contoh praktis
+- **Stop Function** - Kontrol penuh percakapan AI
 
-- [Node.js](https://nodejs.org/) (Versi 12.x atau lebih baru)
-- NPM (biasanya terinstal bersamaan dengan Node.js)
+### ⚡ Interactive Controls
+- **Speed Control** - Atur kecepatan animasi (1-200ms)
+- **Step-by-Step** - Lihat proses algoritma secara detail
+- **Statistics** - Perbandingan efisiensi algoritma
+- **Real-time Visualization** - Animasi smooth dan responsif
 
-### Langkah-langkah
+## 🚀 Demo
 
-1. **Clone atau download repository ini**
+**Live Demo:** [https://jalesjj.github.io/maze-solver-bfs-dfs/](https://jalesjj.github.io/maze-solver-bfs-dfs/)
 
-2. **Buka terminal dan navigasikan ke direktori proyek**
+![Maze Solver Preview](https://via.placeholder.com/800x400/4CAF50/FFFFFF?text=Maze+Solver+Preview)
 
-3. **Instal dependencies**
-   ```
-   npm install
-   ```
+## 🛠️ Teknologi
 
-4. **Jalankan server**
-   ```
-   npm start
-   ```
+### Frontend
+- **HTML5** - Structure dan Canvas untuk visualisasi
+- **CSS3** - Styling modern dengan flexbox dan animations
+- **Vanilla JavaScript** - Logic algoritma dan interaksi UI
 
-5. **Buka browser dan akses aplikasi**
-   
-   Buka [http://localhost:3000](http://localhost:3000) di browser Anda
+### AI Integration
+- **Google Gemini API** - Chatbot AI untuk pembelajaran
+- **RESTful API** - Komunikasi dengan Gemini 1.5 Flash model
 
-## Fitur
+### Deployment
+- **GitHub Pages** - Hosting statis gratis
+- **Progressive Web App** - Responsive di semua device
 
-- Visualisasi algoritma BFS dan DFS
-- Pemilihan berbagai ukuran labirin (5x5, 15x15, 20x20, 30x30)
-- Pembuatan labirin kustom
-- Pengaturan kecepatan animasi
-- Statistik penyelesaian (jumlah langkah dan sel yang dikunjungi)
-- perbandingan BFS dan DFS
-- ada chatbot penjelasan mengenai BFS dan DFS
+## 🎯 Cara Penggunaan
 
-## Struktur Folder
+### 1. **Memilih Maze**
+- Pilih ukuran maze dari dropdown (5x5 hingga 30x30)
+- Atau buat custom maze dengan tools yang tersedia
 
+### 2. **Memilih Algoritma**
+- **BFS** - Untuk jalur terpendek yang terjamin
+- **DFS** - Untuk eksplorasi mendalam
+- **Dijkstra** - Untuk jalur optimal dengan bobot
+
+### 3. **Menjalankan Visualisasi**
+- Klik tombol "Start" untuk memulai
+- Atur kecepatan dengan slider
+- Amati perbedaan cara kerja setiap algoritma
+
+### 4. **Menggunakan AI Chatbot**
+- Klik ikon robot di pojok kanan atas
+- Tanyakan tentang algoritma BFS, DFS, atau Dijkstra
+- Gunakan tombol Stop untuk menghentikan AI kapan saja
+
+## 🎓 Nilai Edukasi
+
+### Konsep yang Dipelajari
+- **Graph Traversal Algorithms** - Cara menjelajahi graf
+- **Time & Space Complexity** - Analisis efisiensi algoritma
+- **Data Structures** - Queue, Stack, Priority Queue
+- **Algorithm Visualization** - Memahami algoritma melalui visual
+
+### Target Audience
+- **Mahasiswa Informatika** - Belajar algoritma secara visual
+- **Guru/Dosen** - Teaching tool yang interaktif
+- **Self-learners** - Autodidak programming dan algoritma
+- **Interview Preparation** - Persiapan technical interview
+
+## 🔧 Setup Local Development
+
+### Prerequisites
+- Web browser modern (Chrome, Firefox, Safari, Edge)
+- Text editor (VS Code recommended)
+- Git untuk version control
+
+### Installation
+```bash
+# Clone repository
+git clone https://github.com/jalesjj/maze-solver-bfs-dfs.git
+
+# Navigate to project directory
+cd maze-solver-bfs-dfs
+
+# Open in browser
+# Buka index.html di browser atau gunakan live server
 ```
-maze-solver/
-├── index.html          # File HTML utama
-├── compare.html        # Perbandingan
-├── styles.css          # File CSS untuk styling
-├── compare-styles.css  # file CSS untuk perbandingan BFS dan DFS
-├── chatbot.css         # file CSS untuk Chatbot
-├── js/                 # Direktori untuk file JavaScript
-│   ├── constants.js    # Konstanta yang digunakan di seluruh aplikasi
-│   ├── maze-solver.js  # Algoritma BFS dan DFS
-│   ├── custom-maze.js  # Fungsi untuk membuat labirin kustom
-│   ├── maze-data.js    # Data labirin yang telah didefinisikan
-│   ├── app.js          # Script utama aplikasi
-│   ├── chatbotid.js    # untuk chatbot bahasa indonesia
-│   ├── chatbotid.js    # untuk chatbot bahasa ingris
-│   ├── djiksa.js       # fungsi algoritma Djiksa
-│   ├── compare.js      # fungsi untuk perbandingan BFS dan DFS
-│   └── dropdown.js     # Fungsi untuk menangani dropdown
-├── server.js           # Server Node.js sederhana
-├── 404.html            # Halaman error 404
-└── package.json        # File konfigurasi Node.js
+
+### AI Chatbot Setup
+1. Dapatkan API Key dari [Google AI Studio](https://makersuite.google.com/app/apikey)
+2. Edit `js/chatbotgemini.js`:
+```javascript
+this.apiKey = 'YOUR_API';
 ```
+3. Replace dengan API key Anda
 
-## Pengembangan
+## 🌈 Screenshots
 
-Untuk pengembangan dengan hot-reload, gunakan:
+### Main Interface
+![Main Interface](https://via.placeholder.com/600x400/2196F3/FFFFFF?text=Main+Interface)
 
-```
-npm run dev
-```
+### BFS Visualization
+![BFS Algorithm](https://via.placeholder.com/600x400/4CAF50/FFFFFF?text=BFS+Algorithm)
 
-Ini memerlukan Nodemon yang akan secara otomatis diinstal saat Anda menjalankan `npm install`.
+### Custom Maze Builder
+![Maze Builder](https://via.placeholder.com/600x400/FF9800/FFFFFF?text=Custom+Maze)
 
-## Perbedaan Algoritma
+### AI Chatbot
+![AI Chatbot](https://via.placeholder.com/600x400/9C27B0/FFFFFF?text=AI+Chatbot)
 
-### BFS (Breadth-First Search)
-- Menggunakan struktur data Queue (antrian)
-- Menjelajahi semua node pada kedalaman yang sama sebelum pindah ke level berikutnya
-- Cocok untuk menemukan jalur terpendek karena menjelajahi node berdasarkan "jarak" dari titik awal
+## 📊 Algorithm Comparison
 
-### DFS (Depth-First Search)
-- Menggunakan struktur data Stack (tumpukan)
-- Menjelajahi satu jalur sampai tidak bisa lagi sebelum kembali dan mencoba jalur alternatif
-- Lebih cepat dalam menemukan solusi di beberapa kasus, tetapi tidak menjamin jalur terpendek
+| Algoritma | Time Complexity | Space Complexity | Jalur Terpendek | Use Case |
+|-----------|----------------|------------------|-----------------|----------|
+| **BFS** | O(V + E) | O(V) | ✅ Ya | Graf tidak berbobot |
+| **DFS** | O(V + E) | O(h) | ❌ Tidak | Eksplorasi mendalam |
+| **Dijkstra** | O(V²) | O(V) | ✅ Ya | Graf berbobot |
+
+## 🤝 Contributing
+
+Kontribusi selalu welcome! Berikut cara berkontribusi:
+
+1. **Fork** repository ini
+2. **Create branch** untuk feature baru (`git checkout -b feature/AmazingFeature`)
+3. **Commit** perubahan (`git commit -m 'Add some AmazingFeature'`)
+4. **Push** ke branch (`git push origin feature/AmazingFeature`)
+5. **Open Pull Request**
+
+### Ideas untuk Kontribusi
+- Tambah algoritma lain (A*, Greedy Best-First)
+- Improve UI/UX design
+- Tambah maze patterns yang lebih kompleks
+- Optimasi performance untuk maze besar
+- Tambah unit tests
+- Improve AI chatbot responses
+
+## 👤 Author
+
+**Jales JND**
+- GitHub: [@jalesjj](https://github.com/jalesjj)\
+
+## 🙏 Acknowledgments
+
+- **Google Gemini AI** - Untuk teknologi chatbot
+- **Font Awesome** - Untuk icons yang digunakan
+- **GitHub Pages** - Untuk hosting gratis
+- **Komunitas Open Source** - Untuk inspirasi dan pembelajaran
+
+## 🔄 Changelog
+
+### v2.0.0 (Latest)
+- ✨ Tambah AI Chatbot dengan Google Gemini
+- ✨ Tambah Dijkstra Algorithm visualization
+- ✨ Improve UI dengan stop button untuk AI
+- 🐛 Fix responsive design untuk mobile
+- 🐛 Fix button layout issues
+
+### v1.0.0
+- 🎉 Initial release
+- ✨ BFS & DFS visualization
+- ✨ Custom maze builder
+- ✨ Speed control dan statistics
+
+---
+
+## 📞 Support
+
+Jika ada pertanyaan atau issue, silakan:
+1. **Buka GitHub Issues** untuk bug reports
+2. **Contact email** untuk pertanyaan umum
+3. **Star repository** jika project ini bermanfaat! ⭐
+
+---
+
+<div align="center">
+
+**⭐ Jika project ini membantu, jangan lupa kasih star! ⭐**
+
+Made with ❤️ by [Jales JND](https://github.com/jalesjj)
+
+</div>
