@@ -6,7 +6,7 @@
 class GeminiChatbot {
     constructor() {
         // API Configuration
-        this.apiKey = 'AIzaSyBWvfxaZSWl3Ndj81DQpe7jtciU-xROz3s';
+        this.apiKey = 'YOUR_API';
         this.apiUrl = 'https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent';
         
         // System prompt untuk context algoritma
