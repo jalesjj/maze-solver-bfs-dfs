@@ -99,6 +99,7 @@ cd maze-solver-bfs-dfs
 
 # Open in browser
 # Buka index.html di browser atau gunakan live server
+# ketik node server.js di terimnal
 ```
 
 ### AI Chatbot Setup
