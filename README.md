@@ -30,7 +30,7 @@ Aplikasi web interaktif untuk memvisualisasikan dan membandingkan algoritma penc
 
 **Live Demo:** [https://jalesjj.github.io/maze-solver-bfs-dfs/](https://jalesjj.github.io/maze-solver-bfs-dfs/)
 
-![Maze Solver Preview](https://via.placeholder.com/800x400/4CAF50/FFFFFF?text=Maze+Solver+Preview)
+AI GEMINI Cant use becouse i have removed, if u want AI GEMINI just use your API gemini in [Google AI Studio](https://makersuite.google.com/app/apikey)
 
 ## 🛠️ Teknologi
 
